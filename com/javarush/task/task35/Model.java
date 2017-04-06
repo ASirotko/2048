@@ -254,6 +254,17 @@ public class Model {
         return moveEfficiency;
     }
 
+    public void autoMove(){
+        PriorityQueue<MoveEfficiency> queue = new PriorityQueue<MoveEfficiency>(4, Collections.reverseOrder());
+
+        queue.offer(getMoveEfficiency(this::left));
+        queue.offer(getMoveEfficiency(this::right));
+        queue.offer(getMoveEfficiency(this::up));
+        queue.offer(getMoveEfficiency(this::down));
+
+        queue.peek().getMove().move();
+    }
+
     /*    public static void main(String[] args) {
         Model m = new Model();
 
